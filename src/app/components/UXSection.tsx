@@ -15,10 +15,8 @@ import {
   Signal,
   Search,
   ArrowLeft,
-  Check,
   AlertTriangle,
   Eye,
-  EyeOff,
 } from 'lucide-react';
 
 const SCREENS = [
