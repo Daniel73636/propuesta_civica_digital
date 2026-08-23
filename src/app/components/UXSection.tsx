@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { LayoutGrid, CreditCard, History, Nfc, Shield, Settings, Signal, Smartphone, Search, ArrowLeft, AlertTriangle, Eye } from 'lucide-react';
+import { LayoutGrid, CreditCard, History, Nfc, Shield, Settings, Signal, Smartphone, Search, ArrowLeft, AlertTriangle, Eye, ChevronRight } from 'lucide-react';
 
 const SCREENS = [
   { id: 'home',     name: 'Inicio / Dashboard', icon: LayoutGrid },
