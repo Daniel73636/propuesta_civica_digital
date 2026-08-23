@@ -2,72 +2,61 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { User, GraduationCap, FileText, Mail } from 'lucide-react';
+import { UserCircle, Mail, GraduationCap, MapPin } from 'lucide-react';
 
 export default function AboutSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section ref={ref} className="relative py-24 sm:py-32 bg-slate-50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="bg-white rounded-2xl border border-slate-100 p-8 sm:p-10 shadow-sm"
-          >
-            {/* Header */}
-            <div className="text-center mb-8">
-              <span className="text-sm font-semibold text-metro-600 uppercase tracking-wider">
-                Sobre la propuesta
-              </span>
+    <section ref={ref} className="relative py-24 bg-ink-900 border-t border-ink-800 overflow-hidden">
+      <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
+
+      <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ type: 'spring' as const, stiffness: 60, damping: 20 }}
+          className="card-dark relative overflow-hidden p-8 sm:p-12 text-center"
+        >
+          {/* Subtle gradient overlay */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-metro-500/5 rounded-full blur-[80px]" />
+
+          <div className="relative z-10">
+            <div className="mx-auto w-20 h-20 bg-ink-800 rounded-full flex items-center justify-center mb-6 border border-ink-700 shadow-ink">
+              <UserCircle className="w-10 h-10 text-ink-400" />
             </div>
 
-            {/* Author */}
-            <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
-              <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-metro-600 to-indigo-700 flex items-center justify-center shrink-0 shadow-lg shadow-metro-600/20">
-                <User className="h-9 w-9 text-white" />
+            <span className="tag-mono mb-4 inline-block">Sobre el autor</span>
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">Daniel Montiel</h2>
+            <p className="text-metro-400 font-medium mb-6">Desarrollador e Ingeniero en Formación</p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm text-ink-300 mb-8">
+              <div className="flex items-center gap-2">
+                <GraduationCap className="w-4 h-4 text-ink-500" />
+                <span>Ing. de Sistemas e Informática (UPB)</span>
               </div>
-              <div className="text-center sm:text-left">
-                <h3 className="text-2xl font-bold text-slate-900">
-                  Daniel Montiel
-                </h3>
-                <div className="flex items-center gap-2 justify-center sm:justify-start mt-2">
-                  <GraduationCap className="h-4 w-4 text-slate-400" />
-                  <p className="text-sm text-slate-500">
-                    Estudiante de Ingeniería de Sistemas e Informática
-                  </p>
-                </div>
-                <p className="text-sm text-slate-400 mt-1">
-                  Universidad Pontificia Bolivariana
-                </p>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-ink-500" />
+                <span>Medellín, Colombia</span>
               </div>
             </div>
 
-            <div className="border-t border-slate-100 pt-6">
-              <div className="flex items-start gap-3 mb-6">
-                <FileText className="h-5 w-5 text-metro-500 shrink-0 mt-0.5" />
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Propuesta de ampliación y evolución técnica del caso
-                  M00746243, presentado previamente al Metro de Medellín.
-                </p>
-              </div>
+            <p className="text-ink-400 leading-relaxed mb-10 max-w-xl mx-auto text-sm">
+              Esta propuesta técnica e interfaz de usuario han sido desarrolladas
+              como un ejercicio académico e investigativo independiente para el ecosistema 
+              del Metro de Medellín (Caso de referencia: M00746243).
+            </p>
 
-              {/* CTA */}
-              <div className="flex justify-center">
-                <a
-                  href="#contacto"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800 transition-colors"
-                >
-                  <Mail className="h-4 w-4" />
-                  Contactar / Solicitar información
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+            <a
+              href="mailto:daniel.montielg@upb.edu.co"
+              className="btn-metro inline-flex shadow-glow-green"
+            >
+              <Mail className="w-4 h-4" />
+              Contactar al autor
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

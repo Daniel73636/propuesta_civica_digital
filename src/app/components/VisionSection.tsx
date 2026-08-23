@@ -2,129 +2,84 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import {
-  CreditCard,
-  User,
-  Smartphone,
-  Wallet,
-  Globe,
-  ArrowRight,
-} from 'lucide-react';
-
-const EVOLUTION = [
-  {
-    icon: CreditCard,
-    label: 'Tarjeta física',
-    description: 'Medio de acceso y recaudo actual.',
-  },
-  {
-    icon: User,
-    label: 'Cuenta digital',
-    description: 'Gestión integral desde la app.',
-  },
-  {
-    icon: Smartphone,
-    label: 'Credencial móvil',
-    description: 'El dispositivo como medio de acceso.',
-  },
-  {
-    icon: Wallet,
-    label: 'Billetera digital',
-    description: 'Integración con ecosistemas de pago.',
-  },
-  {
-    icon: Globe,
-    label: 'Movilidad como Servicio',
-    description: 'Plataforma integral de transporte.',
-  },
-];
+import { Sparkles, ArrowRight, Wallet, Car, Bike, CreditCard } from 'lucide-react';
 
 export default function VisionSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section
-      ref={ref}
-      className="relative py-24 sm:py-32 bg-gradient-to-b from-slate-900 to-slate-950 overflow-hidden"
-    >
-      {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-metro-600/5 rounded-full blur-[100px]" />
+    <section ref={ref} className="relative py-24 sm:py-32 bg-ink-900 overflow-hidden">
+      <div className="absolute inset-0 bg-dots opacity-30 pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+      {/* Decorative gradient blur */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-metro-500/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl mx-auto text-center mb-16"
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+          transition={{ type: 'spring' as const, stiffness: 60, damping: 20 }}
+          className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-metro-500/10 border border-metro-500/30 text-metro-400 mb-8 shadow-glow-green"
         >
-          <span className="text-sm font-semibold text-metro-400 uppercase tracking-wider">
-            Visión de futuro
-          </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            De una tarjeta a una identidad de movilidad
-          </h2>
-          <p className="mt-4 text-lg text-slate-400 leading-relaxed">
-            Una visión progresiva de cómo el sistema Cívica podría evolucionar
-            desde un medio físico hacia una plataforma integral de movilidad.
-          </p>
+          <Sparkles className="h-8 w-8" />
         </motion.div>
 
-        {/* Evolution flow */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0">
-          {EVOLUTION.map((stage, i) => {
-            const Icon = stage.icon;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="flex items-center gap-4 lg:gap-0"
-              >
-                <div className="flex flex-col items-center text-center w-[160px]">
-                  <div className="h-16 w-16 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center mb-3 hover:border-metro-500 transition-colors">
-                    <Icon className="h-7 w-7 text-metro-400" />
-                  </div>
-                  <h3 className="text-sm font-bold text-white mb-1">
-                    {stage.label}
-                  </h3>
-                  <p className="text-[11px] text-slate-500 leading-relaxed">
-                    {stage.description}
-                  </p>
-                </div>
-
-                {i < EVOLUTION.length - 1 && (
-                  <div className="hidden lg:flex items-center px-3">
-                    <motion.div
-                      animate={{ x: [0, 6, 0] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-                    >
-                      <ArrowRight className="h-5 w-5 text-slate-600" />
-                    </motion.div>
-                  </div>
-                )}
-                {i < EVOLUTION.length - 1 && (
-                  <div className="lg:hidden">
-                    <ArrowRight className="h-4 w-4 text-slate-600 rotate-90" />
-                  </div>
-                )}
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Note */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-14 text-center text-sm text-slate-500 italic max-w-xl mx-auto"
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, type: 'spring' as const, stiffness: 60 }}
+          className="text-4xl sm:text-5xl font-black text-white tracking-tight max-w-3xl mx-auto"
         >
-          Esta es una visión de largo plazo. Cada etapa requiere validación
-          técnica, operacional, regulatoria y de seguridad.
+          Más que un medio de pago, una plataforma de <span className="text-metro-gradient">ciudad inteligente</span>
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.3, type: 'spring' as const, stiffness: 60 }}
+          className="mt-6 text-xl text-ink-300 leading-relaxed max-w-2xl mx-auto"
+        >
+          La Cívica del futuro no reside en un plástico, sino en un ecosistema digital interoperable que conecta todos los modos de transporte del Valle de Aburrá.
         </motion.p>
+
+        {/* Visual progression */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5, type: 'spring' as const, stiffness: 50, damping: 20 }}
+          className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8"
+        >
+          <div className="card-dark w-48 text-center relative">
+            <CreditCard className="w-8 h-8 text-ink-500 mx-auto mb-3" />
+            <h3 className="font-bold text-white text-sm">Cívica Física</h3>
+            <p className="text-xs text-ink-400 mt-1">Silo cerrado</p>
+          </div>
+          
+          <div className="flex flex-col items-center justify-center text-metro-500 rotate-90 md:rotate-0">
+            <ArrowRight className="w-8 h-8 animate-pulse" />
+          </div>
+          
+          <div className="card-dark w-48 text-center relative border-metro-500/30 shadow-metro">
+            <Wallet className="w-8 h-8 text-metro-400 mx-auto mb-3" />
+            <h3 className="font-bold text-white text-sm">Billetera Digital</h3>
+            <p className="text-xs text-metro-400/80 mt-1">Interoperabilidad</p>
+          </div>
+
+          <div className="flex flex-col items-center justify-center text-metro-500 rotate-90 md:rotate-0">
+            <ArrowRight className="w-8 h-8 animate-pulse" />
+          </div>
+          
+          <div className="card-dark w-48 text-center relative border-emerald-500/30 shadow-glow-green">
+            <div className="flex justify-center gap-2 mb-3">
+              <Car className="w-6 h-6 text-emerald-400" />
+              <Bike className="w-6 h-6 text-emerald-400" />
+            </div>
+            <h3 className="font-bold text-white text-sm">MaaS</h3>
+            <p className="text-xs text-emerald-400/80 mt-1">Movilidad Integral</p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
